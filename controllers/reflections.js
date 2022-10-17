@@ -2,6 +2,7 @@ const db = require('../config/db');
 
 class reflectionsController{
     static async get(req, res) {
+      const loginUser = res.locals.user
         try {
           let results = await db.query(`SELECT * FROM reflections`);
           
@@ -28,7 +29,7 @@ class reflectionsController{
                 
               return res.status(201).json({ message: "Berhasil Menambahkan Data"})
             
-            } catch (error) {
+            } catch (err) {
               return res.status(404).json({message: err.message})
             }
     }

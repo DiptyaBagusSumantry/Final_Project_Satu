@@ -42,63 +42,68 @@ class UserController{
     }
   }
 
-  static async login(req,res){
-    const email = req.params.email;
+  static async login(req,res) {
+    const email = req.body.email;
     const password = req.body.password;
+    try {
+      const user = await db.query(`SELECT * FROM users WHERE email=$1 limit 1`, [email])
+      console.log(user.password, password)
+      console.log(user)
+      // .then(user => {
+        if (!user.rows.length){
+          return res.status(404).send({message: "User Not Found"});
+          // throw{ name: "User Login Error", devMessage: `User with email ${email} not found`}
+        }
+        // console.log(password, user.password)
+        console.log(user.results)
+      const isCorrect = password === user.rows[0].password
+      console.log(isCorrect)
 
-    await db.query(`SELECT * FROM users WHERE email=$1;`, [email])
-    
-    .then(user => {
-      if (!user){
-        return res.status(404).send({message: "User Not Fond"});
-        // throw{ name: "User Login Error", devMessage: `User with email ${email} not found`}
+      if(!isCorrect){
+        return res.status(401).send({accessToken: null, message: "Invalid Password!"});
+      }
+
+      // var passwordIsValid = (
+      //   password,
+      //   user.password
+      // )
+  
+      // if (!passwordIsValid){
+      //   return res.status(401).send({accessToken: null, message: "Invalid Password!"});
+      //   // throw{ name: "User Login Error", devMessage: `User password with email ${email} does not match`}
+      // }
+      // let response = {
+      //   id : req.body.id,
+      //   // username: user.username,
+      //   email: req.body.email
+      // }
+  
+      const token = generateToken({
+        id: user.id,
+        email: user.email})
+  
+      return res.status(200).json({token})
+    // })
+      // .catch(err => {
+      //   return res.status(404).json({message: err.message})
+      
+      // try{
+      //   const password = req.body.password;
+      //   const email = req.params.email;
+  
+      //   let results = await db.query(`SELECT * FROM users WHERE email= $1`, [email])
+      //   res.status(200).send(`ini datanya ${data}`)
+      // }catch(err){
+      //   return res.send(err);
+      // }
+  
+      // })
+    } catch (error) {
+      console.log(error)
     }
-    // const isCorrect = comparePassword(password, user.password)
-    var passwordIsValid = (
-      password,
-      user.password
-    )
-
-    if (!passwordIsValid){
-      return res.status(401).send({accessToken: null, message: "Invalid Password!"});
-      // throw{ name: "User Login Error", devMessage: `User password with email ${email} does not match`}
-    }
-    // let response = {
-    //   id : req.body.id,
-    //   // username: user.username,
-    //   email: req.body.email
-    // }
-
-    const token = generateToken({
-      id: user.id,
-      email: user.email})
-
-    return res.status(200).json({token})
-  })
-    .catch(err => {
-      return res.status(404).json({message: err.message})
-    
-    // try{
-    //   const password = req.body.password;
-    //   const email = req.params.email;
-
-    //   let results = await db.query(`SELECT * FROM users WHERE email= $1`, [email])
-    //   res.status(200).send(`ini datanya ${data}`)
-    // }catch(err){
-    //   return res.send(err);
-    // }
-
-    })
+   
   }
 }
 
 module.exports = UserController;
 
-// class UserController {
-//     static async getUser(req, res) {
-//       return res.send("This is from User Controller");
-//     }
-//   }
-  
-//   module.exports = UserController;
-  
