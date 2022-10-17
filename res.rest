@@ -1,0 +1,58 @@
+//API users
+GET http://localhost:2000/getUser
+
+###
+GET http://localhost:2000/getUserbyEmail/bagus@gmail.com
+
+###
+POST http://localhost:2000/api/v1/users/login
+Content-Type: application/json
+
+{
+    "password": "cek1234",
+    "email": "bagus@gmail.com"
+}
+
+
+###
+POST http://localhost:2000/api/v1/users/register
+Content-Type: application/json
+
+{
+    "password": "diptya",
+    "email": "diptya@gmail.com"
+}
+
+//API reflections
+###
+GET http://localhost:2000/api/v1/reflections
+
+###
+POST http://localhost:2000/api/v1/reflections
+Content-Type: application/json
+
+{
+   "success" : "okee ke 22",
+   "low_point": "okee",
+   "take_away": "okee", 
+   "owner_id": "4",
+   "created_date": "",
+   "modified_date": ""
+}
+
+###
+PUT http://localhost:2000/api/v1/reflections/7
+Content-Type: application/json
+
+{
+   "success" : "okee ke 22",
+   "low_point": "edit 22",
+   "take_away": "edit 22", 
+   "owner_id": "1",
+   "created_date": "",
+   "modified_date": ""
+}
+
+###
+DELETE http://localhost:2000/api/v1/reflections/50
+
