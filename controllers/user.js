@@ -52,7 +52,6 @@ class UserController{
       // .then(user => {
         if (!user.rows.length){
           return res.status(404).send({message: "User Not Found"});
-          // throw{ name: "User Login Error", devMessage: `User with email ${email} not found`}
         }
         // console.log(password, user.password)
         console.log(user.results)
@@ -62,42 +61,13 @@ class UserController{
       if(!isCorrect){
         return res.status(401).send({accessToken: null, message: "Invalid Password!"});
       }
-
-      // var passwordIsValid = (
-      //   password,
-      //   user.password
-      // )
-  
-      // if (!passwordIsValid){
-      //   return res.status(401).send({accessToken: null, message: "Invalid Password!"});
-      //   // throw{ name: "User Login Error", devMessage: `User password with email ${email} does not match`}
-      // }
-      // let response = {
-      //   id : req.body.id,
-      //   // username: user.username,
-      //   email: req.body.email
-      // }
   
       const token = generateToken({
         id: user.id,
         email: user.email})
   
       return res.status(200).json({token})
-    // })
-      // .catch(err => {
-      //   return res.status(404).json({message: err.message})
-      
-      // try{
-      //   const password = req.body.password;
-      //   const email = req.params.email;
-  
-      //   let results = await db.query(`SELECT * FROM users WHERE email= $1`, [email])
-      //   res.status(200).send(`ini datanya ${data}`)
-      // }catch(err){
-      //   return res.send(err);
-      // }
-  
-      // })
+
     } catch (error) {
       console.log(error)
     }

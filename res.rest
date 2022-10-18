@@ -26,7 +26,7 @@ Content-Type: application/json
 //API reflections
 ###
 GET http://localhost:2000/api/v1/reflections
-x-access-token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjYwMTQwODF9.VAAr4d_6C35UfWLxF18uggliKhoOUcCL1GPEYWon6Vg
+x-access-token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjYwMTc5MDV9.jZM_7O4CklYsNjuaFiuUIGvXwhejdJvKIBuJbH2IDzU
 
 ###
 POST http://localhost:2000/api/v1/reflections
@@ -43,18 +43,19 @@ x-access-token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjYwMTQwODF9.V
 }
 
 ###
-PUT http://localhost:2000/api/v1/reflections/7
+PUT http://localhost:2000/api/v1/reflections/27
 Content-Type: application/json
+x-access-token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjYwMTQwODF9.VAAr4d_6C35UfWLxF18uggliKhoOUcCL1GPEYWon6Vg
 
 {
    "success" : "okee ke 22",
    "low_point": "edit 22",
    "take_away": "edit 22", 
-   "owner_id": "1",
+   "owner_id": "12",
    "created_date": "",
    "modified_date": ""
 }
 
 ###
-DELETE http://localhost:2000/api/v1/reflections/50
-
+DELETE http://localhost:2000/api/v1/reflections/27
+x-access-token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjYwMTQwODF9.VAAr4d_6C35UfWLxF18uggliKhoOUcCL1GPEYWon6Vg

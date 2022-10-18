@@ -7,7 +7,7 @@ function generateToken(payload){
 };
 
 function verifyToken(token){
-    const decoded = jwt.verify(token, PRIVATE_KEY)
+    const decoded = jwt.verify(token, SECRET_KEY)
     return decoded
 }
 

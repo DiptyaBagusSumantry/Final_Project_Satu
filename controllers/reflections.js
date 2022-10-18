@@ -55,7 +55,7 @@ class reflectionsController{
     
          
           return res.status(200).json({ message: "Data Berhasil di Edit"})
-        } catch (error) {
+        } catch (err) {
           return res.status(404).json({message: err.message})
         }
     }

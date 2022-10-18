@@ -10,7 +10,7 @@ router.post("/api/v1/users/register", UserController.createUser);
 router.post("/api/v1/users/login", UserController.login);
 router.get("/getUserbyEmail/:email", UserController.getUserbyemail);
 
-router.use(authentication);
+router.use(authentication.cek);
 
 //API Reflections
 router.get("/api/v1/reflections", reflectionsController.get);
