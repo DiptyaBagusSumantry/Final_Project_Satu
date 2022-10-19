@@ -2,15 +2,15 @@
 GET http://localhost:2000/getUser
 
 ###
-GET http://localhost:2000/getUserbyEmail/bagus@gmail.com
+GET http://localhost:2000/getUserbyEmail/123@gmail.com
 
 ###
 POST http://localhost:2000/api/v1/users/login
 Content-Type: application/json
 
 {
-      "password": "diptya",
-      "email": "diptya@gmail.com"
+      "password": "cek1234",
+      "email": "bagus@gmail.com"
 }
 
 
@@ -19,8 +19,8 @@ POST http://localhost:2000/api/v1/users/register
 Content-Type: application/json
 
 {
-    "email": "bagus@gmail.com",
-    "password": "cek1234"
+    "email": "tes1@gmail.com",
+    "password": "tes"
 }
 
 //API reflections
@@ -37,7 +37,7 @@ x-access-token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjYwMTQwODF9.V
    "success" : "okee ke 22",
    "low_point": "okee",
    "take_away": "okee", 
-   "owner_id": "8",
+   "owner_id": "1",
    "created_date": "",
    "modified_date": ""
 }

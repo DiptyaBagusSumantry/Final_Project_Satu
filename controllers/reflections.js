@@ -3,6 +3,7 @@ const db = require('../config/db');
 class reflectionsController{
     static async get(req, res) {
       const loginUser = res.locals.user
+      console.log(loginUser);
         try {
           let results = await db.query(`SELECT * FROM reflections`);
           
@@ -21,13 +22,19 @@ class reflectionsController{
             // const created_date = req.body.created_date;
             // const modified_date = req.body.modified_date;
             const time = new Date().toISOString();
+            
+            const getUserById = await db.query(`SELECT * FROM users WHERE id=$1;`, [owner_id]);
+            
+            if(!getUserById.rows.length){
+              return res.status(404).json({message: "User Not Found"})
+            }
 
             let results = await db.query(
                 `INSERT INTO reflections (success,low_point,take_away,owner_id,created_date,modified_date) VALUES($1, $2, $3, $4, $5, $6);`,
                 [success,low_point,take_away,owner_id,time,time]
               );
                 
-              return res.status(201).json({ message: "Berhasil Menambahkan Data"})
+            return res.status(201).json({ message: "Berhasil Menambahkan Data"})
             
             } catch (err) {
               return res.status(404).json({message: err.message})
